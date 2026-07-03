@@ -1,17 +1,39 @@
-# 🚀 SBI NEXUS - Agentic AI Digital Banking Companion
+# 🚀 SBI NEXUS — Agentic AI Digital Banking Companion
 
-**SBI NEXUS** is an Agentic AI-powered financial companion designed to accelerate the adoption of SBI's digital banking ecosystem. Developed for the **SBI Hackathon @ Global FinTech Fest (GFF) 2026** under the theme **Agentic AI & Emerging Tech**.
-
-Unlike traditional chatbots that only respond to queries reactively, SBI NEXUS utilizes a collaborative network of specialized AI agents that proactively understand customer profiles, analyze spending behaviors, model "what-if" scenarios through a **Financial Digital Twin**, and simulate digital onboarding (YONO, UPI, AutoPay) to boost digital adoption.
+> **Empowering SBI Customers with Proactive, Collaborative Multi-Agent Intelligence**
 
 ---
 
-## 🏗️ System Architecture
+## 📌 Project Overview
+* **Theme**: Agentic AI & Emerging Tech
+* **Competition / Hackathon**: SBI Hackathon @ Global FinTech Fest (GFF) 2026
+* **Target Audience**: SBI retail banking customers, particularly those seeking to transition into the digital ecosystem (YONO, UPI, AutoPay) or model long-term financial milestones.
+
+---
+
+## ⚠️ Problem Statement
+Traditional mobile banking applications are primarily **reactive**—they wait for users to check balances, make transfers, or search for products. This creates several key issues:
+* **Digital Adoption Gaps**: Tech-shy or elderly customers find feature-dense apps like SBI YONO or UPI setups intimidating, leading to slow digital onboarding.
+* **Lack of Scenario Planning**: Customers do not have an intuitive way to simulate financial decisions (e.g., *"How does increasing my SIP by ₹2,000 affect my home loan timeline?"*).
+* **Static Security Measures**: Fraud prevention is often retrospective, relying on users recognizing fraud after the transaction occurs.
+* **Generic Recommendations**: Standard banner ads fail to provide hyper-personalized, context-aware suggestions mapped to a customer's real-time cash flow.
+
+---
+
+## 💡 Proposed Solution: SBI NEXUS
+**SBI NEXUS** is a next-generation **Agentic AI Digital Banking Companion** that acts as an intelligent assistant, coach, and guardian. Built on a **collaborative multi-agent framework**, it coordinates specialized AI agents to guide, educate, and protect the customer.
+
+By simulating a **Financial Digital Twin**, SBI NEXUS models cash-flow scenarios in real-time, gamifies the onboarding of digital banking tools (YONO, UPI, AutoPay), and maintains a proactive **Fraud Guard** security shield.
+
+---
+
+## ⚙️ Process Flow & Architecture
+SBI NEXUS processes user queries and actions through a orchestrated multi-agent network:
 
 ```mermaid
 graph TD
-    Customer([Customer / User]) -->|Interacts via Chat & Sliders| AppShell[React Dashboard]
-    AppShell -->|Queries & Updates| Orchestrator[AI Orchestrator Agent]
+    User([Customer / User]) -->|Interacts with Chat & Sliders| AppShell[React Dashboard]
+    AppShell -->|JSON Payload| Orchestrator[AI Orchestrator Agent]
     
     subgraph Multi-Agent Layer
         Orchestrator --> CustomerAgent[Customer Understanding Agent]
@@ -23,86 +45,156 @@ graph TD
         Orchestrator --> EngagementAgent[Engagement & Reminder Agent]
     end
     
-    subgraph Core Engines
-        CustomerAgent --> DB[(Mock DB / State Store)]
-        TwinAgent --> TwinEngine[Cash-Flow Projection Engine]
+    subgraph Core Engines & State
+        CustomerAgent --> DB[(In-Memory Database)]
+        TwinAgent --> TwinEngine[10-Year Cash-Flow Projection Engine]
         RecommendAgent --> SBIGateway[Mock SBI Banking APIs]
     end
+    
+    Orchestrator -->|Aggregated Response + Collaboration Trace| AppShell
+```
+
+### Process Execution Sequence:
+1. **User Action**: The user asks a financial question or adjusts cash-flow sliders in the React frontend dashboard.
+2. **Orchestration**: The **AI Orchestrator** parses the query and decides which specialized agents need to collaborate.
+3. **Collaboration**:
+   * The **Customer Agent** looks up user transaction history.
+   * The **Digital Twin Agent** calculates future projections.
+   * The **Recommendation Agent** matches results with active SBI products.
+4. **Trace Output**: The response, along with a transparent **Collaboration Trace** showing each agent's internal reasoning, is returned to the dashboard.
+
+---
+
+## 🛠️ Technology Stack
+
+| Layer | Technology | Purpose |
+| :--- | :--- | :--- |
+| **Frontend** | **React.js (Vite)** | Responsive single-page application dashboard |
+| **Styling** | **Tailwind CSS** | Premium Glassmorphism UI & responsive layouts |
+| **Visualizations** | **Recharts** | Interactive 10-year cash-flow forecasting graphs |
+| **Icons** | **Lucide-react** | Clean modern iconography |
+| **Backend API** | **FastAPI (Python 3.10+)** | High-performance asynchronous API endpoints |
+| **Data Validation** | **Pydantic** | Strict request-response data modeling |
+| **Containerization** | **Docker & Compose** | Unified multi-container deployment |
+
+---
+
+## 📂 Project Folders Hierarchy
+
+```
+SBI-NEXUS/
+├── backend/
+│   ├── app/
+│   │   ├── agents/            # Collaborative Multi-Agent Layer
+│   │   │   ├── adoption_agent.py      # Guides YONO/UPI/AutoPay activation
+│   │   │   ├── customer_agent.py      # Analyzes spending patterns & profile
+│   │   │   ├── digital_twin.py        # Projecting cash flows & targets
+│   │   │   ├── engagement_agent.py    # Formulates reminders & alerts
+│   │   │   ├── fraud_agent.py         # Monitors security & freeze commands
+│   │   │   ├── orchestrator.py        # Central agent router & coordinator
+│   │   │   ├── planning_agent.py      # Goal roadmap strategist
+│   │   │   └── recommend_agent.py     # Maps SBI financial products to goals
+│   │   ├── api/               # Endpoint Routing
+│   │   │   └── sbi_mock_api.py        # Mocks YONO and SBI Core banking APIs
+│   │   ├── database.py        # In-memory State Store & Mock Data
+│   │   └── main.py            # FastAPI Application Entrypoint
+│   ├── Dockerfile
+│   └── requirements.txt
+├── frontend/
+│   ├── src/
+│   │   ├── components/        # Interactive Dashboard Modules
+│   │   │   ├── AlertBanner.jsx       # Emergency alerts and suggestions
+│   │   │   ├── ChatBot.jsx          # Agent chat interface + Trace Viewer
+│   │   │   ├── DigitalTwin.jsx      # Financial Twin Sandbox & Recharts
+│   │   │   ├── FraudGuard.jsx       # Security cockpit and panic lock
+│   │   │   └── OnboardingGuide.jsx  # Smartphone simulator for YONO tutorial
+│   │   ├── App.jsx            # Core Dashboard Layout & Component Shell
+│   │   ├── index.css          # Design system variables & styling tokens
+│   │   └── main.jsx           # React app mountpoint
+│   ├── index.html
+│   ├── tailwind.config.js
+│   ├── vite.config.js
+│   └── Dockerfile
+├── docker-compose.yml         # Local container orchestration config
+├── LICENSE                    # Project license guidelines
+└── README.md                  # This file
 ```
 
 ---
 
 ## 🌟 Key Features
 
-1. **AI Orchestrator & Collaborative Agents**: Orchestrates calls between 7 distinct agents to deliver contextual answers, exposing a complete collaboration trace on each query.
-2. **Financial Digital Twin Sandbox**: An interactive workspace where users adjust sliders to simulate reducing discretionary spending or increasing SIP contributions. The system computes a 10-year cash-flow projection (visualized via Recharts) showing exact goal attainment timelines and matching SBI loan/saving offerings.
-3. **Interactive Onboarding Emulator**: A simulated smartphone screen guides users screen-by-screen on YONO Mobile App activation, UPI linking, and AutoPay setup.
-4. **Autonomous Fraud Guard**: Actively logs suspicious attempts (e.g., blocked POS transfers) and gives the user one-click panic locks to freeze credentials.
-5. **Proactive Notifications**: Salary credits, maturity of term-deposits, and investment opportunities push contextual actions to keep the user engaged.
+1. **Multi-Agent Collaboration Trace**:
+   Every time the user asks a question, the dashboard reveals a detailed step-by-step trace showing exactly how the **Customer**, **Planning**, and **Recommendation** agents worked together to formulate the answer.
+2. **Financial Digital Twin Sandbox**:
+   An interactive space with sliders allowing the customer to simulate budget changes (e.g., cutting down discretionary spending, increasing monthly Mutual Fund SIPs) and instantly view 10-year projected cash-flow graphs for goal completion.
+3. **Interactive Onboarding Emulator**:
+   A visual, step-by-step mock smartphone simulation that walks non-digital users through setting up UPI, activating the SBI YONO app, and establishing recurring AutoPay instructions safely.
+4. **Autonomous Fraud Guard**:
+   An active security cockpit that highlights suspicious transactions (e.g. overseas merchant attempts) and provides a single-click "Freeze Account" panic button to lock digital banking channels instantly.
+5. **Contextual Engagement Notifications**:
+   Pushes helpful, real-time alerts regarding salary credits, fixed deposit maturities, and target budget limits directly to the user dashboard.
 
 ---
 
-## 🛠️ Technology Stack
+## 👥 Team & Roles
 
-- **Frontend**: React.js (Vite), Tailwind CSS (Glassmorphism design system), Recharts (data visualizations), Lucide-react (icons)
-- **Backend**: FastAPI (Python 3.10+), Pydantic (data validations)
-- **AI/Orchestration**: Agent Orchestrator & modular rule-engines
+* **Atharv Pawar** — *Lead Developer & AI Architect*
+  * Designed the FastAPI backend and orchestrator routing model.
+  * Developed the multi-agent collaboration backend logic.
+  * Implemented the React dashboard, featuring the interactive Smartphone Emulator and Recharts projection dashboard.
 
 ---
 
 ## 🚀 Getting Started
 
-### Prerequisites
-- Python 3.10 or higher
-- Node.js 18.x or higher
+Ensure you have **Python 3.10+** and **Node.js 18+** installed on your machine.
 
-### Installation
+### Method 1: Local Development Setup
 
-#### 1. Clone & Set Up Workspace
+#### 1. Clone & Navigate to Workspace
 ```bash
-git clone https://github.com/yourusername/SBI-NEXUS.git
+git clone https://github.com/Atharv-Pawar/SBI-NEXUS.git
 cd SBI-NEXUS
 ```
 
-#### 2. Start Backend Service
+#### 2. Start the FastAPI Backend Service
 ```bash
 cd backend
 python -m venv venv
-# On Windows
+
+# Activate Virtual Environment (Windows)
 venv\Scripts\activate
-# On macOS/Linux
+
+# Activate Virtual Environment (macOS/Linux)
 source venv/bin/activate
 
 pip install -r requirements.txt
 python app/main.py
 ```
-The FastAPI backend will spin up on [http://localhost:8000](http://localhost:8000).
+The FastAPI backend service will start running on [http://localhost:8000](http://localhost:8000).
 
-#### 3. Start Frontend Portal
+#### 3. Start the Vite React Frontend
+Open a new terminal session, navigate to the `frontend` folder, and run:
 ```bash
-cd ../frontend
+cd frontend
 npm install
 npm run dev
 ```
-Open [http://localhost:5173](http://localhost:5173) in your web browser.
+Open your browser and navigate to [http://localhost:5173](http://localhost:5173) to view the companion.
 
 ---
 
-## 📋 10-Slide Pitch Deck Structure
+### Method 2: Docker Compose Setup
 
-SBI NEXUS is accompanied by a professional pitch structure:
-- **Slide 1**: Title, Team Name, and Participant Details
-- **Slide 2**: Problem Statement (Digital adoption gaps & reactive banking limits)
-- **Slide 3**: Proposed Solution (Proactive companion via SBI NEXUS)
-- **Slide 4**: Multi-Agent Architecture (Orchestrator routing to specialized sub-agents)
-- **Slide 5**: Financial Digital Twin (Interactive cash-flow simulations)
-- **Slide 6**: Customer Journey (Account creation -> YONO activation -> SIP investing -> Home Loan)
-- **Slide 7**: Technology Choices (Vite, React, FastAPI, LangGraph-ready, Docker)
-- **Slide 8**: Business Value for SBI (Higher cross-selling, lower support cost, digital adoption)
-- **Slide 9**: Future Enhancements (Voice banking in regional languages, Portfolio Analyzer)
-- **Slide 10**: Acknowledgements & Thank You
+Run the entire stack (backend + frontend) in a single command using Docker:
+```bash
+docker-compose up --build
+```
+* **Frontend**: [http://localhost:5173](http://localhost:5173)
+* **Backend API Docs**: [http://localhost:8000/docs](http://localhost:8000/docs)
 
 ---
 
 ## 📄 License
-Licensed under the MIT License. Developed for the SBI Hackathon @ GFF 2026.
+Distributed under the MIT License. See the [LICENSE](./LICENSE) file for more details.
