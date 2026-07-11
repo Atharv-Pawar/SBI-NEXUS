@@ -13,6 +13,14 @@ export default {
           dark: '#002244',
           accent: '#20c997',
           hover: '#0084c4'
+        },
+        yono: {
+          purple: '#612b8d',
+          dark: '#310d4f',
+          light: '#f2f0f7',
+          plum: '#4c156c',
+          pink: '#ec008c',
+          wave: '#3b0b55'
         }
       }
     },

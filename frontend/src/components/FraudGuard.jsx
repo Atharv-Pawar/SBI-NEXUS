@@ -115,7 +115,7 @@ export default function FraudGuard({ analysis, transactions, onLockCard }) {
                     <p className="text-xs text-slate-400 mt-0.5">Timestamp: {tx.date}</p>
                   </div>
                   <div className="text-right">
-                    <span className="text-lg font-extrabold text-rose-400">-₹{tx.amount:,.2f}</span>
+                    <span className="text-lg font-extrabold text-rose-400">-₹{tx.amount.toLocaleString()}</span>
                     <p className="text-[10px] text-slate-400">Blocked & Flagged</p>
                   </div>
                 </div>

@@ -81,3 +81,23 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+/* Captcha Background Pattern */
+.captcha-bg {
+  background-color: #f1f5f9;
+  background-image: 
+    radial-gradient(#94a3b8 1px, transparent 0),
+    radial-gradient(#94a3b8 1px, transparent 0),
+    linear-gradient(45deg, transparent 49%, #cbd5e1 50%, transparent 51%),
+    linear-gradient(-45deg, transparent 49%, #cbd5e1 50%, transparent 51%);
+  background-size: 8px 8px, 8px 8px, 30px 30px, 30px 30px;
+  background-position: 0 0, 4px 4px, 0 0, 0 0;
+  text-shadow: 2px 2px 2px rgba(0,0,0,0.15);
+  letter-spacing: 0.25em;
+}
+
+/* YONO custom font overrides */
+.font-yono {
+  font-family: 'Outfit', sans-serif;
+}
+
